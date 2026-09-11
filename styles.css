@@ -72,7 +72,36 @@ h1 { margin: 1.25rem 0 1.5rem; max-width: 13ch; font-size: clamp(3rem, 6.2vw, 5.
 .case-body h3 { margin: .65rem 0 .8rem; max-width: 30ch; font-size: clamp(1.4rem, 2.5vw, 2rem); line-height: 1.15; letter-spacing: -.03em; }
 .case-body > p:not(.case-context) { max-width: 46rem; color: var(--muted); }
 .case-lesson { padding-left: 1rem; border-left: 3px solid var(--signal); }
+.case-link { min-height: 2.75rem; display: inline-flex; align-items: center; gap: .5rem; margin-top: .5rem; color: var(--ink); font-weight: 650; text-underline-offset: .3rem; }
+.case-link span { color: var(--signal-strong); }
 .case-status { align-self: start; color: var(--muted); text-align: right; letter-spacing: .04em; }
+.case-status-ready { color: var(--signal-strong); }
+
+.case-page { width: min(100%, 68rem); margin: 0 auto; }
+.case-hero { padding: clamp(4rem, 9vw, 8rem) 2rem clamp(3rem, 7vw, 6rem); border-bottom: 1px solid var(--line); }
+.case-hero h1 { max-width: 15ch; }
+.case-summary { max-width: 43rem; margin: 0; color: var(--muted); font-size: clamp(1.15rem, 2vw, 1.5rem); }
+.case-meta { display: flex; flex-wrap: wrap; gap: .75rem 2rem; margin: 2rem 0 0; padding: 1.25rem 0 0; border-top: 1px solid var(--line); list-style: none; color: var(--muted); font: .75rem/1.5 ui-monospace, "Cascadia Mono", monospace; text-transform: uppercase; letter-spacing: .06em; }
+.case-section { display: grid; grid-template-columns: minmax(14rem, .55fr) minmax(0, 1.45fr); gap: clamp(2rem, 7vw, 6rem); padding: clamp(3rem, 7vw, 6rem) 2rem; border-bottom: 1px solid var(--line); }
+.case-section > * { min-width: 0; }
+.case-section h2 { margin: .65rem 0 0; font-size: clamp(1.8rem, 3.5vw, 3rem); line-height: 1.05; letter-spacing: -.04em; }
+.case-narrative { max-width: 44rem; }
+.case-narrative > :first-child { margin-top: 0; }
+.case-narrative p, .case-narrative li { color: var(--muted); }
+.case-narrative strong { color: var(--ink); }
+.case-narrative blockquote { margin: 2rem 0; padding: 1.25rem 0 1.25rem 1.5rem; border-left: 3px solid var(--signal); font-size: clamp(1.25rem, 2vw, 1.65rem); line-height: 1.35; }
+.case-narrative blockquote p { margin: 0; color: var(--ink); }
+.evidence-note { margin-top: 2rem; padding: 1.25rem; border: 1px solid var(--line); background: var(--surface); }
+.evidence-note h3 { margin: 0 0 .5rem; font-size: 1rem; }
+.evidence-note p { margin: 0; }
+.system-map { margin: 2rem 0; padding: 1.5rem; border: 1px solid var(--line); background: var(--surface); }
+.system-map svg { width: 100%; height: auto; display: block; }
+.system-map .map-line { stroke: var(--muted); stroke-width: 2; fill: none; }
+.system-map .map-node { fill: var(--paper); stroke: var(--ink); stroke-width: 2; }
+.system-map .map-output { fill: var(--signal); stroke: var(--signal); }
+.system-map text { fill: var(--ink); font: 12px ui-monospace, "Cascadia Mono", monospace; }
+.system-map figcaption { margin-top: 1rem; color: var(--muted); font-size: .875rem; }
+.back-link { min-height: 2.75rem; display: inline-flex; align-items: center; gap: .5rem; color: var(--muted); font: .875rem ui-monospace, "Cascadia Mono", monospace; text-underline-offset: .3rem; }
 
 .expertise-grid { margin-top: 3.5rem; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
 .expertise-grid article { min-height: 16rem; padding: 2rem; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--surface); }
@@ -85,6 +114,10 @@ h1 { margin: 1.25rem 0 1.5rem; max-width: 13ch; font-size: clamp(3rem, 6.2vw, 5.
 .site-footer { padding: 2rem; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; color: var(--muted); font: .75rem ui-monospace, "Cascadia Mono", monospace; }
 .site-footer p { margin: 0; }
 
+@media (max-width: 65rem) {
+  .case-section { grid-template-columns: 1fr; }
+}
+
 @media (max-width: 55rem) {
   .site-header { align-items: flex-start; padding-block: 1.25rem; }
   .hero { grid-template-columns: 1fr; }
@@ -94,6 +127,7 @@ h1 { margin: 1.25rem 0 1.5rem; max-width: 13ch; font-size: clamp(3rem, 6.2vw, 5.
   .work-heading { grid-template-columns: 1fr; }
   .case-card { grid-template-columns: 3rem minmax(0, 1fr); }
   .case-status { grid-column: 2; text-align: left; }
+  .case-section { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 38rem) {
@@ -102,6 +136,7 @@ h1 { margin: 1.25rem 0 1.5rem; max-width: 13ch; font-size: clamp(3rem, 6.2vw, 5.
   .hero { min-height: 0; }
   .hero-copy, .section { padding-inline: 1.25rem; }
   h1 { font-size: clamp(2.85rem, 14vw, 4.25rem); }
+  .case-hero h1 { font-size: clamp(2.35rem, 10vw, 3rem); }
   .method { padding-inline: 1.25rem; }
   .method li:not(:last-child)::after { margin-left: .8rem; }
   .case-card { grid-template-columns: 1fr; gap: .75rem; }

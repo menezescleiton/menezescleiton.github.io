@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="How investigation and a connection map turned implicit knowledge into something others could use.">
+  <meta name="theme-color" content="#142027">
+  <title>Making an Undocumented System Understandable — Cleiton Menezes</title>
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../styles.css?v=3">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <header class="site-header">
+    <a class="wordmark" href="../index.html" aria-label="Cleiton Menezes, home">Cleiton Menezes <span>—</span></a>
+    <nav aria-label="Case study navigation">
+      <a href="#problem">Problem</a>
+      <a href="#investigation">Investigation</a>
+      <a href="#decision">Decision</a>
+      <a href="#result">Result</a>
+    </nav>
+  </header>
+
+  <main id="main-content" class="case-page">
+    <section class="case-hero" aria-labelledby="case-title">
+      <a class="back-link" href="../index.html#work"><span aria-hidden="true">←</span> All case studies</a>
+      <p class="eyebrow">Systems thinking · Externalizing complexity</p>
+      <h1 id="case-title">Making an undocumented system understandable</h1>
+      <p class="case-summary">How investigation and a connection map turned implicit knowledge into something others could use.</p>
+      <ul class="case-meta" aria-label="Case study context">
+        <li>Independent project</li>
+        <li>Client: Ocean Pact</li>
+        <li>Environment: vessel</li>
+        <li>Impact: qualitative</li>
+      </ul>
+    </section>
+
+    <section class="case-section" id="problem" aria-labelledby="problem-title">
+      <div><p class="section-index">01 / Problem</p><h2 id="problem-title">Before reorganizing the panel, I had to understand it.</h2></div>
+      <div class="case-narrative">
+        <p>The PLC monitoring cabinet could not close properly. Cables were hanging, connections were unidentified, some cables were too short for the existing arrangement, and no usable installation documentation was available.</p>
+        <p>Before reorganizing it, I needed to understand what was actually connected—and why.</p>
+      </div>
+    </section>
+
+    <section class="case-section" id="investigation" aria-labelledby="investigation-title">
+      <div><p class="section-index">02 / Investigation</p><h2 id="investigation-title">Reconstructing the installation.</h2></div>
+      <div class="case-narrative">
+        <p>I searched for available documentation, studied the manuals for the PLC series, and traced relevant connections one by one: the monitored sensor, its signal origin, the corresponding PLC terminal, and the monitored unit it belonged to.</p>
+        <p>The model did not exist beforehand. It emerged from the investigation.</p>
+        <p>As the connections became clearer, so did the constraints. Cable lengths limited how the panel could be rearranged, parts of the layout prevented connections from being organized cleanly, and the available power supply was insufficient for the PLC together with the active sensors.</p>
+        <figure class="system-map">
+          <svg viewBox="0 0 700 250" role="img" aria-labelledby="map-title map-desc">
+            <title id="map-title">Conceptual representation of the investigation</title>
+            <desc id="map-desc">Connections are traced from sensors through identified terminals to monitored units, producing a documented system map.</desc>
+            <path class="map-line" d="M105 55H245M105 125H245M105 195H245M335 55H475M335 125H475M335 195H475M565 55V195"/>
+            <circle class="map-node" cx="75" cy="55" r="28"/><circle class="map-node" cx="75" cy="125" r="28"/><circle class="map-node" cx="75" cy="195" r="28"/>
+            <rect class="map-node" x="245" y="30" width="90" height="50"/><rect class="map-node" x="245" y="100" width="90" height="50"/><rect class="map-node" x="245" y="170" width="90" height="50"/>
+            <circle class="map-node" cx="520" cy="55" r="45"/><circle class="map-node" cx="520" cy="195" r="45"/>
+            <rect class="map-output" x="565" y="95" width="105" height="60"/>
+            <text x="49" y="59">sensor</text><text x="49" y="129">sensor</text><text x="49" y="199">sensor</text>
+            <text x="260" y="60">terminal</text><text x="260" y="130">terminal</text><text x="260" y="200">terminal</text>
+            <text x="495" y="59">unit A</text><text x="495" y="199">unit B</text><text x="583" y="130">system map</text>
+          </svg>
+          <figcaption>Conceptual reconstruction of the reasoning process—not the installation's actual wiring diagram.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="case-section" id="decision" aria-labelledby="decision-title">
+      <div><p class="section-index">03 / Decision</p><h2 id="decision-title">Deciding how far to intervene.</h2></div>
+      <div class="case-narrative">
+        <p>Repairing only the most visible faults would leave much of the underlying uncertainty in place. I presented the condition of the panel to the vessel manager and obtained agreement for a broader reorganization.</p>
+        <p>Cost remained a real constraint. Instead of assuming that every component should be new, I inspected material available aboard and reused verified equipment where appropriate, including power-supply equipment.</p>
+        <p>I removed the PLC panel, reorganized the panel and terminal bars by motor or monitored unit, and gave every terminal a unique identifier. A team already organizing other electrical panels helped with the cable bundles.</p>
+        <p>The investigation produced a map showing the origins and destinations of the connections and their relationship to the monitored units. I printed and laminated it and attached it to the inside of the cabinet door, where someone working on the panel later could consult it directly.</p>
+      </div>
+    </section>
+
+    <section class="case-section" id="result" aria-labelledby="result-title">
+      <div><p class="section-index">04 / Result</p><h2 id="result-title">Turning the model into a shared artifact.</h2></div>
+      <div class="case-narrative">
+        <p>The project left the panel substantially more organized and understandable, with documentation available directly at the maintenance point.</p>
+        <p>On a later visit, the chief engineer specifically thanked me for how much easier the map made it to identify the origin and destination of connections.</p>
+        <p>The work had not only changed the physical arrangement. It had made knowledge that was previously implicit available to the next person approaching the system.</p>
+        <div class="evidence-note">
+          <h3>Evidence and impact boundary</h3>
+          <p>The impact documented here is qualitative. The project did not measure financial savings, maintenance time, downtime, failure rates, or reliability improvements. Photographs, the original map, and contemporaneous records remain pending confirmation and are not presented as available evidence.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section" aria-labelledby="software-title">
+      <div><p class="section-index">05 / Engineering reflection</p><h2 id="software-title">Making critical knowledge visible.</h2></div>
+      <div class="case-narrative">
+        <p>This experience is not evidence of specialization in PLCs or industrial automation. Its relevance to my work as a Software Engineer lies in the reasoning pattern: investigate before changing, build a model from available evidence, make constraints explicit, choose according to context, and leave useful knowledge with the system.</p>
+        <p>In software, implicit knowledge can be made visible through tests, boundaries, diagrams, logs, decision records, abstractions, documentation, and observable behavior.</p>
+        <blockquote><p>When critical knowledge is implicit, making it visible can become part of the engineering solution.</p></blockquote>
+        <a class="button button-primary" href="../index.html#work">Explore other evidence</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Cleiton Menezes · Software Engineer</p>
+    <p>Make the next change safer, easier, and less costly.</p>
+  </footer>
+</body>
+</html>
