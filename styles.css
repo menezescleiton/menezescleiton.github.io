@@ -94,6 +94,16 @@ h1 { margin: 1.25rem 0 1.5rem; max-width: 13ch; font-size: clamp(3rem, 6.2vw, 5.
 .evidence-note { margin-top: 2rem; padding: 1.25rem; border: 1px solid var(--line); background: var(--surface); }
 .evidence-note h3 { margin: 0 0 .5rem; font-size: 1rem; }
 .evidence-note p { margin: 0; }
+.metric-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 2rem 0; border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+.metric-card { min-height: 11rem; padding: 1.5rem; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--surface); }
+.metric-value { margin: 0 0 .5rem; color: var(--signal-strong); font-size: clamp(1.8rem, 4vw, 3rem); line-height: 1; letter-spacing: -.04em; font-weight: 650; }
+.metric-card p:last-child { margin-bottom: 0; color: var(--muted); }
+.architecture-flow { margin: 2rem 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
+.architecture-flow li { padding: 1rem 0; display: grid; grid-template-columns: 8rem 1fr; gap: 1rem; border-bottom: 1px solid var(--line); }
+.architecture-flow strong { color: var(--signal-strong); font: .75rem/1.5 ui-monospace, "Cascadia Mono", monospace; text-transform: uppercase; letter-spacing: .06em; }
+.caveat { margin-top: 2rem; padding: 1.5rem; border: 1px dashed var(--line); }
+.caveat h3 { margin: 0 0 .5rem; font-size: 1rem; }
+.caveat p { margin: 0; color: var(--muted); }
 .system-map { margin: 2rem 0; padding: 1.5rem; border: 1px solid var(--line); background: var(--surface); }
 .system-map svg { width: 100%; height: auto; display: block; }
 .system-map .map-line { stroke: var(--muted); stroke-width: 2; fill: none; }
@@ -142,6 +152,8 @@ h1 { margin: 1.25rem 0 1.5rem; max-width: 13ch; font-size: clamp(3rem, 6.2vw, 5.
   .case-card { grid-template-columns: 1fr; gap: .75rem; }
   .case-status { grid-column: 1; }
   .expertise-grid { grid-template-columns: 1fr; }
+  .metric-grid { grid-template-columns: 1fr; }
+  .architecture-flow li { grid-template-columns: 1fr; gap: .25rem; }
   .site-footer { display: block; }
   .site-footer p + p { margin-top: .5rem; }
 }

@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A case study about tracing an access-control defect through a legacy C++ system and separating the immediate fix from a broader architectural hypothesis.">
+  <meta name="theme-color" content="#142027">
+  <title>Legacy Access-Control Investigation — Cleiton Menezes</title>
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <header class="site-header">
+    <a class="wordmark" href="../index.html" aria-label="Cleiton Menezes, home">Cleiton Menezes <span>—</span></a>
+    <nav aria-label="Case study navigation">
+      <a href="#problem">Problem</a>
+      <a href="#investigation">Investigation</a>
+      <a href="#correction">Correction</a>
+      <a href="#learning">Learning</a>
+    </nav>
+  </header>
+
+  <main id="main-content" class="case-page">
+    <section class="case-hero" aria-labelledby="case-title">
+      <a class="back-link" href="../index.html#work"><span aria-hidden="true">←</span> All case studies</a>
+      <p class="eyebrow">Legacy systems · Root-cause investigation</p>
+      <h1 id="case-title">The code I was looking at was not causing the behavior</h1>
+      <p class="case-summary">Tracing an access-control defect to the state change that happened later.</p>
+      <ul class="case-meta" aria-label="Case study context">
+        <li>Product: document management system</li>
+        <li>Technology: C++</li>
+        <li>Role: junior software developer</li>
+        <li>Status: published case study</li>
+      </ul>
+    </section>
+
+    <section class="case-section" id="problem" aria-labelledby="problem-title">
+      <div><p class="section-index">01 / Problem</p><h2 id="problem-title">Restrictions were saved but not enforced.</h2></div>
+      <div class="case-narrative">
+        <p>A client reported that users covered by access restrictions could still open protected files. Every permission category relying on the same restriction mechanism showed the defect.</p>
+        <p>I received the problem description and the assignment to reproduce the behavior, locate its cause and correct it.</p>
+        <p>A newer security implementation had been released earlier. Because it was recent and directly related to the affected behavior, it was the first reasonable hypothesis.</p>
+      </div>
+    </section>
+
+    <section class="case-section" id="investigation" aria-labelledby="investigation-title">
+      <div><p class="section-index">02 / Investigation</p><h2 id="investigation-title">Follow the state, not the first assumption.</h2></div>
+      <div class="case-narrative">
+        <p>I reproduced the behavior on a test machine. The available logs did not contain enough information to identify the cause, so I traced the execution flow with a debugger.</p>
+        <ol class="architecture-flow" aria-label="Observed execution sequence">
+          <li><strong>Load</strong><span>The user entity entered memory with the correct restrictions.</span></li>
+          <li><strong>Later call</strong><span>An older module that remained active ran immediately afterward.</span></li>
+          <li><strong>Overwrite</strong><span>The module directly replaced the restrictions on the same user entity.</span></li>
+          <li><strong>Authorize</strong><span>The application used the modified in-memory entity as the authorization credential.</span></li>
+          <li><strong>Outcome</strong><span>Users could open files that should have remained restricted.</span></li>
+        </ol>
+        <p>The newer implementation produced the correct state. A later legacy step changed that state before authorization was enforced.</p>
+      </div>
+    </section>
+
+    <section class="case-section" id="correction" aria-labelledby="correction-title">
+      <div><p class="section-index">03 / Correction</p><h2 id="correction-title">Fix the identified cause and validate the boundary.</h2></div>
+      <div class="case-narrative">
+        <p>I removed the references and calls to the obsolete module. Validation confirmed that users covered by the restrictions could no longer open the protected files, while authorized users retained access.</p>
+        <p>The correction was included in a new release as a security patch.</p>
+        <div class="evidence-note">
+          <h3>Confirmed impact</h3>
+          <p>The affected restriction behavior was corrected and authorized access was preserved. No claim is made about the number of users or files affected, actual information exposure, malicious use, financial impact or regulatory consequences.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section" aria-labelledby="structure-title">
+      <div><p class="section-index">04 / Structure</p><h2 id="structure-title">The immediate cause and the structural condition were distinct.</h2></div>
+      <div class="case-narrative">
+        <p>The immediate cause was specific: the obsolete module overwrote the restrictions.</p>
+        <p>The codebase also contained public attributes, mixed responsibilities and direct calls between modules. Multiple components could alter shared state, and the relevant execution path was not visible in the available logs.</p>
+        <p>These conditions made the interaction harder to discover and predict. They do not prove why the defect was introduced.</p>
+      </div>
+    </section>
+
+    <section class="case-section" id="learning" aria-labelledby="learning-title">
+      <div><p class="section-index">05 / Learning</p><h2 id="learning-title">Separate the patch from the architectural proposal.</h2></div>
+      <div class="case-narrative">
+        <p>I explored a limited proof of concept in a parallel development line. It tested clearer separation of responsibilities, stronger encapsulation and fewer direct state mutations across selected modules.</p>
+        <p>The exploration exposed additional dependencies. A transformation of that scale would have required broader team participation and was not adopted within the project's constraints.</p>
+        <p>In retrospect, a smaller scope, a narrower demonstration and evidence tied directly to the next decision might have made the proposal easier to evaluate. That is a hypothesis, not a proven explanation for the outcome.</p>
+        <blockquote><p>The code that appears to explain a behavior is not always the code producing the final result. Follow the behavior, observe where state changes and revise the model when the evidence contradicts the first hypothesis.</p></blockquote>
+        <div class="caveat">
+          <h3>Historical evidence boundary</h3>
+          <p>The factual account is confirmed, but the original source code, logs, presentations, patch records, client information and internal documentation are confidential and are not publicly available.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section" aria-labelledby="status-title">
+      <div><p class="section-index">06 / Status</p><h2 id="status-title">What remains before publication.</h2></div>
+      <div class="case-narrative">
+        <p>This case study passed desktop, mobile, accessibility and confidentiality validation before publication.</p>
+        <a class="button button-primary" href="../index.html#work">Explore other evidence</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Cleiton Menezes · Software Engineer</p>
+    <p>Make the next change safer, easier, and less costly.</p>
+  </footer>
+</body>
+</html>
