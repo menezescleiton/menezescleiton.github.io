@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A case study about improving test automation reliability, execution time and maintainability, with a bounded adoption outcome.">
+  <meta name="theme-color" content="#142027">
+  <title>Reliable Test Automation System — Cleiton Menezes</title>
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <header class="site-header">
+    <a class="wordmark" href="../index.html" aria-label="Cleiton Menezes, home">Cleiton Menezes <span>—</span></a>
+    <nav aria-label="Case study navigation">
+      <a href="#problem">Problem</a>
+      <a href="#design">Design</a>
+      <a href="#results">Results</a>
+      <a href="#adoption">Adoption</a>
+    </nav>
+  </header>
+
+  <main id="main-content" class="case-page">
+    <section class="case-hero" aria-labelledby="case-title">
+      <a class="back-link" href="../index.html#work"><span aria-hidden="true">←</span> All case studies</a>
+      <p class="eyebrow">Software engineering · Test automation architecture</p>
+      <h1 id="case-title">Building a more reliable test automation system</h1>
+      <p class="case-summary">A technical improvement that also changed how I think about adoption.</p>
+      <ul class="case-meta" aria-label="Case study context">
+        <li>Context: Salesforce-based CRM</li>
+        <li>Stack: Java, Selenium, Cucumber</li>
+        <li>Scope: active test pipeline</li>
+        <li>Status: published case study</li>
+      </ul>
+    </section>
+
+    <section class="case-section" id="problem" aria-labelledby="problem-title">
+      <div><p class="section-index">01 / Problem</p><h2 id="problem-title">An automation suite that was difficult to trust.</h2></div>
+      <div class="case-narrative">
+        <p>The evaluated scenarios typically took around 20 minutes or more. In consecutive executions, the old implementation showed a false-positive rate of roughly 60% or higher, even under normal conditions.</p>
+        <p>Recurring team complaints about instability and day-to-day friction prompted the investigation. The technical review found slow execution, sensitivity to page-structure changes and automation failures that still required manual investigation.</p>
+        <p>Presence and value validations were defined element by element. Expected product values were hard-coded even though the product shelf changed frequently.</p>
+        <p>I initiated the investigation and independently designed and implemented a new model for the original test scope.</p>
+      </div>
+    </section>
+
+    <section class="case-section" id="design" aria-labelledby="design-title">
+      <div><p class="section-index">02 / Design</p><h2 id="design-title">Separate structure, expected data and validation.</h2></div>
+      <div class="case-narrative">
+        <p>The new Page Objects represented reusable page sections. They supplied a container and the field types supported within that area.</p>
+        <p>A reusable validator discovered fields inside the container, related them to their labels and compared their values with a map of expected results. Expected values could be maintained in text files instead of being embedded in the automation code.</p>
+        <ul class="architecture-flow" aria-label="Architecture responsibilities">
+          <li><strong>Page Object</strong><span>Defines the page area and supported field types.</span></li>
+          <li><strong>Data map</strong><span>Defines each label and expected value.</span></li>
+          <li><strong>Validator</strong><span>Discovers, extracts and compares values within the supplied scope.</span></li>
+        </ul>
+        <p>The resilience model used condition-based explicit waits, controlled retries, container-relative location and a fresh element lookup after stale references.</p>
+      </div>
+    </section>
+
+    <section class="case-section" aria-labelledby="evidence-title">
+      <div><p class="section-index">03 / Evidence</p><h2 id="evidence-title">Make each execution easier to investigate.</h2></div>
+      <div class="case-narrative">
+        <p>I implemented a custom Cucumber reporting plugin that collected scenario duration, executed steps, screenshots, logs, errors and stack traces into an intermediate JSON document.</p>
+        <p>A configurable file-generation layer consumed that representation. Only the PDF generator was implemented. Screenshot timing was controlled through Cucumber hooks, allowing capture before or after each step.</p>
+        <p>The evidence did not automatically decide whether a failure belonged to the product or the automation. It provided a more structured starting point for manual investigation.</p>
+      </div>
+    </section>
+
+    <section class="case-section" id="results" aria-labelledby="results-title">
+      <div><p class="section-index">04 / Results</p><h2 id="results-title">Measured improvement within a bounded scope.</h2></div>
+      <div class="case-narrative">
+        <p>All approximately 16 scenarios that already had JUnit automation were migrated to the Cucumber-based model and integrated into the active test pipeline. They represented approximately 80% of the known backlog; the remaining items had not been automated in either approach.</p>
+        <div class="metric-grid" aria-label="Primary historical results">
+          <article class="metric-card"><p class="metric-value">~50%</p><p>lower average total execution time across the evaluated scenarios.</p></article>
+          <article class="metric-card"><p class="metric-value">~10% max</p><p>false-positive rate in the new model; the worst observed result occurred under load, compared with roughly 60% or higher previously under normal conditions.</p></article>
+        </div>
+        <p>Reusable form validations dropped from approximately five minutes to seconds in the evaluated scenarios. The evaluated scope also showed fewer maintenance tickets per scenario and broader automated functional coverage.</p>
+        <div class="evidence-note">
+          <h3>Historical evidence boundary</h3>
+          <p>These are approximate historical measurements. The original code, records and project artifacts are confidential and are not publicly available.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section" id="adoption" aria-labelledby="adoption-title">
+      <div><p class="section-index">05 / Adoption</p><h2 id="adoption-title">Technical quality did not guarantee broader adoption.</h2></div>
+      <div class="case-narrative">
+        <p>The model remained in use for its original pipeline scope. A proposal to extend it to other areas was not adopted because team members perceived the approach as too complex for everyday use.</p>
+        <p>At the time, I gave most of the presentation space to the internal architecture. Practical examples and representative before-and-after scenarios remained secondary. In retrospect, that may have made the intended usage and practical value harder to evaluate.</p>
+        <p>I may have focused on improving the internal architecture without making the adoption surface simple enough. A smaller public API, packaged libraries, representative examples and incremental demonstrations might have made the model easier to understand and assess.</p>
+        <blockquote><p>Architecture has at least two audiences: the people who maintain its internals and the people who need to use it.</p></blockquote>
+        <div class="caveat">
+          <h3>Public reconstruction pending</h3>
+          <p>An independent public reconstruction is planned to demonstrate the architectural principles with synthetic data. It does not yet exist and will not be presented as proof of the historical results.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section" aria-labelledby="next-title">
+      <div><p class="section-index">06 / Status</p><h2 id="next-title">Publication and evidence status.</h2></div>
+      <div class="case-narrative">
+        <p>This case study passed confidentiality, rendered UX, accessibility and channel validation before publication.</p>
+        <a class="button button-primary" href="../index.html#work">Explore other evidence</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Cleiton Menezes · Software Engineer</p>
+    <p>Make the next change safer, easier, and less costly.</p>
+  </footer>
+</body>
+</html>

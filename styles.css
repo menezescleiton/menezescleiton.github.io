@@ -78,6 +78,7 @@ h1 { margin: 1.25rem 0 1.5rem; max-width: 13ch; font-size: clamp(3rem, 6.2vw, 5.
 .case-status-ready { color: var(--signal-strong); }
 
 .case-page { width: min(100%, 68rem); margin: 0 auto; }
+.case-page h1, .case-page h2, .case-page h3, .case-page p, .case-page li, .case-page a { overflow-wrap: anywhere; }
 .case-hero { padding: clamp(4rem, 9vw, 8rem) 2rem clamp(3rem, 7vw, 6rem); border-bottom: 1px solid var(--line); }
 .case-hero h1 { max-width: 15ch; }
 .case-summary { max-width: 43rem; margin: 0; color: var(--muted); font-size: clamp(1.15rem, 2vw, 1.5rem); }
