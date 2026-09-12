@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="An anonymized engineering story about a known cable condition, a deferred preventive intervention and more than 16 hours of operational recovery.">
+  <meta name="theme-color" content="#142027">
+  <title>Working Was Not the Same as Healthy — Cleiton Menezes</title>
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <header class="site-header">
+    <a class="wordmark" href="../index.html" aria-label="Cleiton Menezes, home">Cleiton Menezes <span>—</span></a>
+    <nav aria-label="Case study navigation">
+      <a href="#condition">Condition</a>
+      <a href="#decision">Decision</a>
+      <a href="#recovery">Recovery</a>
+      <a href="#learning">Learning</a>
+    </nav>
+  </header>
+
+  <main id="main-content" class="case-page">
+    <section class="case-hero" aria-labelledby="case-title">
+      <a class="back-link" href="../index.html#work"><span aria-hidden="true">←</span> All case studies</a>
+      <p class="eyebrow">Engineering judgment · Preventive thinking</p>
+      <h1 id="case-title">Working was not the same as healthy</h1>
+      <p class="case-summary">A known cable condition, an estimated one-hour intervention and more than 16 hours of recovery.</p>
+      <ul class="case-meta" aria-label="Case study context">
+        <li>Context: anonymized offshore operation</li>
+        <li>System: remotely operated vehicle</li>
+        <li>Role: trainee</li>
+        <li>Status: published case study</li>
+      </ul>
+    </section>
+
+    <section class="case-section" id="condition" aria-labelledby="condition-title">
+      <div><p class="section-index">01 / Condition</p><h2 id="condition-title">The system had not failed, but the evidence had changed.</h2></div>
+      <div class="case-narrative">
+        <p>The incident involved an ROV armored cable that combined high-voltage power, optical-fiber communication and a mechanical load-bearing structure formed by opposing layers of high-strength wire.</p>
+        <p>During recovery of the vehicle, I noticed that the outer armor layer had loosened and that some strands had begun to overlap.</p>
+        <p>I reported the condition to the supervisor and began correcting it with another technician. The required intervention was known: realign the strands and tension the cable before using it again. The work was estimated to delay the operation by approximately one hour.</p>
+      </div>
+    </section>
+
+    <section class="case-section" id="decision" aria-labelledby="decision-title">
+      <div><p class="section-index">02 / Decision</p><h2 id="decision-title">A visible condition was left unresolved.</h2></div>
+      <div class="case-narrative">
+        <p>The intervention was stopped. The decision was to launch the vehicle again based on the expectation that the armor would settle during deployment.</p>
+        <p>The condition remained unresolved, and a knot subsequently formed in the cable on the drum. The vehicle could no longer be recovered normally.</p>
+        <ol class="architecture-flow" aria-label="Observed incident sequence">
+          <li><strong>Observe</strong><span>Loose outer armor and overlapping strands during recovery.</span></li>
+          <li><strong>Prepare</strong><span>Realignment and tensioning began; the intervention was estimated at approximately one hour.</span></li>
+          <li><strong>Defer</strong><span>The correction was stopped and the vehicle was launched again.</span></li>
+          <li><strong>Fail</strong><span>A knot formed on the drum and normal recovery became impossible.</span></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="case-section" id="recovery" aria-labelledby="recovery-title">
+      <div><p class="section-index">03 / Recovery</p><h2 id="recovery-title">A small intervention became a much larger recovery.</h2></div>
+      <div class="case-narrative">
+        <p>The team managed to recover the ROV, but doing so damaged a section of the cable. Returning the system to service required removing the damaged section, rebuilding the armored-cable termination at the vehicle and completing the necessary tests.</p>
+        <p>More than 16 hours elapsed between the knot forming and the ROV returning to operational condition.</p>
+        <p>As a trainee, I assisted the technicians and supervisor throughout the recovery and retermination while observing the procedure as part of my development. I did not lead the repair or own the operational decision.</p>
+        <div class="evidence-note">
+          <h3>Confirmed impact</h3>
+          <p>The episode resulted in cable damage, retermination, testing and more than 16 hours until operational recovery. No financial or fleet-wide impact is claimed.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section" id="learning" aria-labelledby="learning-title">
+      <div><p class="section-index">04 / Learning</p><h2 id="learning-title">The lesson was not “always stop.”</h2></div>
+      <div class="case-narrative">
+        <p>Preventive intervention also has a cost, and unnecessary maintenance can create waste or new risk. The stronger lesson was that the current state of a system is not enough to decide its future.</p>
+        <p>The system had not yet failed, but direct observation showed a condition that required correction. After the intervention was deferred, the observed condition developed into a knot, followed by cable damage, retermination and more than 16 hours of downtime.</p>
+        <p>Good preventive judgment combines evidence, technical limits, criticality, operational context, intervention cost and the consequence of deferring action.</p>
+        <blockquote><p>A condition deferred today can return with greater consequences.</p></blockquote>
+      </div>
+    </section>
+
+    <section class="case-section" aria-labelledby="software-title">
+      <div><p class="section-index">05 / Connection</p><h2 id="software-title">The domain changed. The question remained.</h2></div>
+      <div class="case-narrative">
+        <p>This experience helped shift my attention from responding only after failure toward acting before a known condition became a larger problem.</p>
+        <p>The case is not evidence of software architecture, SRE or software reliability expertise. Its relevance is narrower: it shows the origin of a consequence-oriented and preventive way of making engineering decisions.</p>
+        <p>In software, a system can still deliver features while accumulating coupling, fragility, obsolete dependencies or implicit knowledge. That does not justify automatic refactoring. It means the decision should include another question: what could happen if we leave the system in this condition?</p>
+        <div class="caveat">
+          <h3>Historical evidence boundary</h3>
+          <p>The company, vessel, location, team and equipment identifiers have been anonymized. The account and approximate durations are confirmed, but photographs, incident reports, downtime records and internal procedures are confidential and unavailable for public inspection.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section" aria-labelledby="status-title">
+      <div><p class="section-index">06 / Status</p><h2 id="status-title">What remains before publication.</h2></div>
+      <div class="case-narrative">
+        <p>This case study passed desktop, mobile, accessibility and confidentiality validation before publication.</p>
+        <a class="button button-primary" href="../index.html#work">Explore other evidence</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Cleiton Menezes · Software Engineer</p>
+    <p>Make the next change safer, easier, and less costly.</p>
+  </footer>
+</body>
+</html>
